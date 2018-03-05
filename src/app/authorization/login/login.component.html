@@ -1,0 +1,57 @@
+<div class="jumbotron">
+  <h1 class="display-2">Post it !</h1>
+  <p class="lead">Want to share something interesting?</p>
+  <hr class="my-2">
+  <p>
+    Try it now !
+  </p>
+</div>
+
+<form (ngSubmit)="login()" #loginForm="ngForm">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input [(ngModel)]="loginDto.email"
+           #email="ngModel"
+           id="email"
+           name="email"
+           type="email"
+           [ngClass]="{
+            'form-control': true,
+            'is-invalid': email.dirty && email.errors
+           }"
+           placeholder="email@domain.com"
+           required email>
+    <div  class="invalid-feedback"
+          *ngIf="email.errors?.email">
+      Must be a valid email
+    </div>
+    <div  *ngIf="loginResult.hasResult"
+          [ngClass]="{
+            'alert alert-success': loginResult.valid,
+            'alert alert-danger': !loginResult.valid
+          }">
+      {{loginResult.message}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      [(ngModel)]="loginDto.password"
+      #password="ngModel"
+      id="password"
+      name="password"
+      type="password"
+      [ngClass]="{
+            'form-control': true,
+            'is-invalid': password.dirty && password.errors
+           }"
+      placeholder="password"
+      required minlength="6">
+    <div class="invalid-feedback"
+         *ngIf="password.errors?.minlength">
+      Password must has at least {{password.errors.minlength.requiredLength}} characters
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+  <button type="button" class="btn btn-primary" [disabled]="!loginForm.valid" (click)="register()">Register</button>
+</form>
