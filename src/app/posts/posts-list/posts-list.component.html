@@ -1,0 +1,12 @@
+<form [formGroup]="searchForm" (ngSubmit)="search()">
+  <input type="text" formControlName="name" class="form-control">
+  <br>
+  <div class="card" *ngFor="let post of posts">
+    <div class="card-body">
+      <h5 class="card-title">{{post.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ post.created | date: 'dd-MMMM-yyyy'}}</h6>
+      <p class="card-text">{{post.content}}</p>
+      <a class="card-link">Comments</a>
+    </div>
+  </div>
+</form>

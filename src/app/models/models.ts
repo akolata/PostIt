@@ -12,11 +12,12 @@ export class LoginResult {
   ){}
 }
 
-export class AddPostDto {
+export class Post {
   _id: {
     $oid: string;
   };
   title: string;
   content: string;
   created: Date;
+  userId: string;
 }

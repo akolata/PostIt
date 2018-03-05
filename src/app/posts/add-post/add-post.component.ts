@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AddPostDto} from '../../models/models';
+import {Post} from '../../models/models';
 import {NgForm} from '@angular/forms';
+import {PostsService} from '../service/posts.service';
 
 @Component({
   selector: 'app-add-post',
@@ -12,18 +13,19 @@ export class AddPostComponent implements OnInit {
   @ViewChild('addPostForm')
   addPostForm: NgForm;
 
-  addPostDto: AddPostDto;
+  post: Post;
 
-  constructor() {
-    this.addPostDto = new AddPostDto();
+  constructor(private postsService: PostsService) {
+    this.post = new Post();
   }
 
   ngOnInit() {
   }
 
   addPost(): void {
-    this.addPostDto = new AddPostDto();
-    this.addPostForm.resetForm(this.addPostDto);
+    this.postsService.addPost(this.post);
+    this.post = new Post();
+    this.addPostForm.resetForm(this.post);
   }
 
 }

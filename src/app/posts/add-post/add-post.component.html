@@ -11,7 +11,7 @@
           'form-control': true,
           'is-invalid': title.dirty && title.errors
         }"
-        [(ngModel)]="addPostDto.title"
+        [(ngModel)]="post.title"
         required
         minlength="3"
         maxlength="50">
@@ -28,7 +28,7 @@
       <textarea
         id="content"
         name="content"
-        [(ngModel)]="addPostDto.content"
+        [(ngModel)]="post.content"
         #content="ngModel"
         [ngClass]="{
           'form-control': true,
@@ -45,5 +45,5 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Add post !</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!addPostForm.valid">Add post !</button>
 </form>
