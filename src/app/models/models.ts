@@ -11,3 +11,12 @@ export class LoginResult {
     public valid?: boolean
   ){}
 }
+
+export class AddPostDto {
+  _id: {
+    $oid: string;
+  };
+  title: string;
+  content: string;
+  created: Date;
+}

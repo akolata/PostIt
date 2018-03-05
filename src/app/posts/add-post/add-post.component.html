@@ -1,0 +1,49 @@
+<form (ngSubmit)="addPost()" #addPostForm="ngForm">
+  <div class="form-row">
+    <div class="form-group offset-2 col-6">
+      <label for="title">Title</label>
+      <input
+        id="title"
+        type="text"
+        name="title"
+        #title="ngModel"
+        [ngClass]="{
+          'form-control': true,
+          'is-invalid': title.dirty && title.errors
+        }"
+        [(ngModel)]="addPostDto.title"
+        required
+        minlength="3"
+        maxlength="50">
+      <div *ngIf="title.invalid && (title.dirty || title.touched)"
+           class="invalid-feedback">
+        <p *ngIf="title.errors.minlength">Title must has at least {{title.errors.minlength.requiredLength}} characters</p>
+        <p *ngIf="title.errors.required">Required !</p>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group offset-2 col-8">
+      <label for="content">Content</label>
+      <textarea
+        id="content"
+        name="content"
+        [(ngModel)]="addPostDto.content"
+        #content="ngModel"
+        [ngClass]="{
+          'form-control': true,
+          'is-invalid': content.dirty && content.errors
+        }"
+        required
+        minlength="3"
+        maxlength="50">
+      </textarea>
+      <div *ngIf="content.invalid && (content.dirty || content.touched)"
+           class="invalid-feedback">
+        <p *ngIf="content.errors.minlength">content must has at least {{content.errors.minlength.requiredLength}} characters</p>
+        <p *ngIf="content.errors.required">Required !</p>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Add post !</button>
+</form>

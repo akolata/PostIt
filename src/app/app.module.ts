@@ -9,6 +9,7 @@ import {AuthGuardService, AuthService} from './authorization';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
+import {PostsService} from './posts';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
   ],
   providers: [
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    PostsService
   ],
   bootstrap: [AppComponent]
 })
