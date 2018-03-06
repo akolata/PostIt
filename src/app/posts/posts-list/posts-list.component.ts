@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {PostsService} from '../service/posts.service';
 import {Post} from '../../models/models';
 import {FormControl, FormGroup} from '@angular/forms';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'app-posts-list',
@@ -26,13 +29,14 @@ export class PostsListComponent implements OnInit {
     });
 
     this.searchForm.get('name').valueChanges
+      .distinctUntilChanged()
+      .debounceTime(400)
       .subscribe(value => {
-        //TODO filter value
-        this.postsService.getPosts();
+        this.postsService.getPosts(value);
       });
   }
 
   search() {
-    this.postsService.getPosts();
+    this.postsService.getPosts(this.searchForm.get('name').value);
   }
 }

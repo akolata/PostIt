@@ -18,8 +18,17 @@ export class PostsService {
     this.getPosts();
   }
 
-  getPosts() {
-    this.http.get<Array<Post>>(this.apiUrl, {params: this.params})
+  getPosts(postTitle: string = '') {
+    const titleRegexQuery = `
+      {
+        "title": {
+          "$regex": ".*${postTitle}.*",
+          "$options": "i"
+        }
+      }
+    `;
+
+    this.http.get<Array<Post>>(this.apiUrl, {params: this.params.set('q', titleRegexQuery)})
       .subscribe(postsFromDb => {
         this.posts$.next(postsFromDb);
       });
