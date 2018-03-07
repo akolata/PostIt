@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{postDetails.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ postDetails.created | date: 'dd-MMMM-yyyy'}}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">{{ postDetails.authorEmail }}</h6>
+    <p class="card-text">{{postDetails.content}}</p>
+    <p class="text-right">
+      <a class="btn btn-primary" (click)="toggleComments()">Comments</a>
+      <a class="btn btn-primary" (click)="toggleAddComment()">Add Comment</a>
+    </p>
+    <ul class="list-group list-group-flush" *ngIf="commentsSectionVisible">
+      <li class="list-group-item" *ngIf="!postDetails.comments">No comments yet</li>
+      <li class="list-group-item" *ngFor="let comment of postDetails.comments">
+        {{comment.email}} - {{comment.comment}}
+      </li>
+    </ul>
+    <div>
+      <ul *ngIf="addCommentInputVisible" class="list-group list-group-flush">
+        <input #commentInput class="form-control" (keydown.enter)="addComment(commentInput)">
+      </ul>
+    </div>
+  </div>
+</div>

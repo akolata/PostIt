@@ -1,17 +1,34 @@
-export class LoginDto {
+/**
+ * Dto used for Firebase login
+ */
+export class AuthenticationDto {
   constructor(public email?: string,
               public password?: string,) {
   }
 }
 
-export class LoginResult {
-  constructor(
-    public hasResult: boolean,
-    public message?: string,
-    public valid?: boolean
-  ){}
+/**
+ * Class used for login/registration validation
+ */
+export class AuthenticationResult {
+  constructor(public hasResult: boolean,
+              public message?: string,
+              public valid?: boolean) {
+  }
 }
 
+/**
+ * A single comment for post
+ */
+export class PostComment {
+  constructor(public email: string,
+              public comment: string) {
+  }
+}
+
+/**
+ * Class representing a user's post
+ */
 export class Post {
   _id: {
     $oid: string;
@@ -19,5 +36,6 @@ export class Post {
   title: string;
   content: string;
   created: Date;
-  userId: string;
+  authorEmail: string;
+  comments?: PostComment[];
 }

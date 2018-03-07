@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {PostsRoutingModule} from './posts.routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {AddPostComponent, PostsListComponent} from './index';
+import {AddPostComponent, PostsListComponent, PostDetailComponent} from './index';
 
 @NgModule({
   imports: [
@@ -15,7 +15,8 @@ import {AddPostComponent, PostsListComponent} from './index';
   ],
   declarations: [
     AddPostComponent,
-    PostsListComponent
+    PostsListComponent,
+    PostDetailComponent
   ]
 })
 export class PostsModule {

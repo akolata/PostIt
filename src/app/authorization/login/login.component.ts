@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {LoginDto, LoginResult} from '../../models/models';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationDto, AuthenticationResult} from '../../models/models';
 import {Router} from '@angular/router';
 import {AuthService} from '../service/auth.service';
 
@@ -10,25 +10,26 @@ import {AuthService} from '../service/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginDto: LoginDto = new LoginDto();
-  loginResult: LoginResult = new LoginResult(false);
+  authenticationDto: AuthenticationDto = new AuthenticationDto();
+  authenticationResult: AuthenticationResult = new AuthenticationResult(false);
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
-  login() {
-    this.authService.login(this.loginDto)
-      .then(user => {
+  login(): void {
+    this.authService.login(this.authenticationDto)
+      .then(() => {
         this.router.navigate(['/home']);
       }, err => {
         this.updateLoginResult(false, err.message);
       });
   }
 
-  register() {
-    this.authService.register(this.loginDto)
+  register(): void {
+    this.authService.register(this.authenticationDto)
       .then(user => {
         this.updateLoginResult(true, 'You can now log in');
       }, err => {
@@ -37,9 +38,9 @@ export class LoginComponent implements OnInit {
   }
 
   private updateLoginResult(valid: boolean, message: string): void {
-    this.loginResult.hasResult = true;
-    this.loginResult.valid = valid;
-    this.loginResult.message = message;
+    this.authenticationResult.hasResult = true;
+    this.authenticationResult.valid = valid;
+    this.authenticationResult.message = message;
   }
 
 }

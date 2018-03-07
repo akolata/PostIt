@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Post} from '../../models/models';
 import {AuthService} from '../../authorization';
@@ -40,11 +40,30 @@ export class PostsService {
 
   addPost(post: Post) {
     post.created = new Date();
-    post.userId = this.authService.user.uid;
+    post.authorEmail = this.authService.user.email;
+    post.comments = [];
+
     this.http.post(this.apiUrl, post, {params: this.params}).subscribe(data => {
       this.getPosts();
     });
 
+  }
+
+  addCommentToPost(post: Post) {
+    const commentsJson = JSON.stringify(post.comments);
+    const updateJSON = `
+    {
+      "$set": {
+        "comments":  ${commentsJson}
+      }
+    }
+    `;
+    const postUrl = this.apiUrl + `/${post._id.$oid}`;
+
+    this.http.put<Post>(postUrl, updateJSON, {
+      params: this.params,
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    });
   }
 
 }

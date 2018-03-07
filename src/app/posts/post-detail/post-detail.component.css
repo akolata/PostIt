@@ -1,0 +1,16 @@
+.card {
+  margin-bottom: 1.5em;
+}
+
+.card-title {
+  font-size: 2em;
+}
+
+div.card a {
+  color: white;
+}
+
+.comments-section {
+  width: 80%;
+  border: 1px solid black;
+}
