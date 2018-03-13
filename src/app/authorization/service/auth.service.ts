@@ -17,7 +17,6 @@ export class AuthService {
 
   test() {
     this.angularFireAuth.auth.fetchProvidersForEmail("olek.tbg@poczta.onet.pl").then(data => {
-      console.log(data);
     });
   }
 
@@ -32,6 +31,7 @@ export class AuthService {
   }
 
   logout() {
+    this.user = null;
     this.angularFireAuth.auth.signOut();
   }
 

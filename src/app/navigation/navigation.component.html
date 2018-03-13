@@ -2,5 +2,6 @@
   <a class="nav-link" routerLinkActive="active" routerLink="/home" >Home</a>
   <a class="nav-link" routerLinkActive="active" routerLink="/posts/all" >Browse</a>
   <a class="nav-link" routerLinkActive="active" routerLink="/posts/add" >Add post</a>
+  <a class="nav-link" routerLinkActive="active" routerLink="/profile">Profile</a>
   <a class="nav-link" *ngIf="authService.user" routerLink="/logout" (click)="logout()">Logout</a>
 </nav>

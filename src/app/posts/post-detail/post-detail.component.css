@@ -6,7 +6,11 @@
   font-size: 2em;
 }
 
-div.card a {
+a.authorLink {
+  color: black;
+}
+
+div.card a.btn {
   color: white;
 }
 

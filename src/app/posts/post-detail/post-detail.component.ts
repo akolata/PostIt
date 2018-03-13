@@ -1,7 +1,6 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Post, PostComment} from '../../models/models';
 import {AuthService} from '../../authorization';
-import {FormControl} from '@angular/forms';
 import {PostsService} from '../service/posts.service';
 
 @Component({
@@ -17,10 +16,10 @@ export class PostDetailComponent implements OnInit {
   commentsSectionVisible = false;
   addCommentInputVisible = false;
 
-  constructor(private authService: AuthService, private postService: PostsService) { }
+  constructor(private authService: AuthService, private postService: PostsService) {
+  }
 
   ngOnInit() {
-    console.log(this.authService.user.email);
     this.authService.test();
   }
 
@@ -33,7 +32,7 @@ export class PostDetailComponent implements OnInit {
   }
 
   addComment(input: HTMLInputElement): void {
-    if(input.value.trim().replace(/\\s+/, '') === '') return;
+    if (input.value.trim().replace(/\\s+/, '') === '') return;
 
     let comment = new PostComment(this.authService.user.email, input.value);
     this.postDetails.comments.push(comment);

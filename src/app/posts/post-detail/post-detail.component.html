@@ -2,7 +2,9 @@
   <div class="card-body">
     <h5 class="card-title">{{postDetails.title}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{ postDetails.created | date: 'dd-MMMM-yyyy'}}</h6>
-    <h6 class="card-subtitle mb-2 text-muted">{{ postDetails.authorEmail }}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">
+      <a class="authorLink" routerLink="/profile/{{postDetails.authorEmail}}">{{ postDetails.authorEmail }}</a>
+    </h6>
     <p class="card-text">{{postDetails.content}}</p>
     <p class="text-right">
       <a class="btn btn-primary" (click)="toggleComments()">Comments</a>

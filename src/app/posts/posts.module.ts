@@ -17,6 +17,8 @@ import {AddPostComponent, PostsListComponent, PostDetailComponent} from './index
     AddPostComponent,
     PostsListComponent,
     PostDetailComponent
+  ], exports: [
+    PostDetailComponent
   ]
 })
 export class PostsModule {
